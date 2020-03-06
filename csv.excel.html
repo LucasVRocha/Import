@@ -1,0 +1,27 @@
+#Data Input and Output importando csv, execl, html ou sql
+import pandas as pd
+
+#csv
+
+print(locals()) # printa o local da sua pasta e o que tem nela
+print(pd.read_csv('example'))
+print(type('example.csv'))
+df = pd.read_csv('example')
+print(df)
+print(type(df))
+df.to_csv('My_output')  # dessa forma cria uma coluna no ID importado
+print(pd.read_csv('My_output')) # dessa forma cria uma coluna no ID importado
+df.to_csv('My_outup', index=False) # com index = false não cria uma coluna com a numeração importada
+print(pd.read_csv('My_outup'))
+
+#excel  # importa excel e retira sua coluna de ID
+print(pd.read_excel('Excel_Sample.xlsx', sheet_name="Sheet1"))
+df.to_excel('Excel_Sample.xlsx',sheet_name="Sheet1")
+print(df)
+
+#html  # abrir lista de um site
+data = pd.read_html('https://www.fdic.gov/bank/individual/failed/banklist.html')
+print(type(data)) # importou como lsita
+print(data[0].head())
+data = pd.DataFrame(data[0])
+print(data['Bank Name'])
